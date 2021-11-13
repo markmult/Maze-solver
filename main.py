@@ -42,6 +42,7 @@ class Maze:
         self.vertical_offset = None
         self.blocks = []
         self.path = []
+        self.final_moves = 0
         self.moves = 0
         self.finished = False
 
@@ -70,16 +71,16 @@ class Maze:
         if self.finished:
             text_done = FONT_MED.render("DONE!", 1, BLACK)
 
-            if self.moves > 200:
+            if self.final_moves > 200:
                 success = "Failed to solve with under 200 moves."
-            elif self.moves > 150:
+            elif self.final_moves > 150:
                 success = "Failed to solve with under 150 moves."
-            elif self.moves > 20:
+            elif self.final_moves > 20:
                 success = "Failed to solve with under 20 moves."
             else:
                 success = "Solving with 20 moves succeeded!"
 
-            results = "{} moves used. {}".format(self.moves, success)
+            results = "{} moves used. {}".format(self.final_moves, success)
             text_results = FONT_SMALL.render(results, 1, BLACK)
 
             self.screen.blit(text_results, (self.screen_width - 430, 50))
@@ -187,13 +188,14 @@ class Maze:
         if point in self.path or self.blocks[y_pos][x_pos] == "#" or self.blocks[y_pos][x_pos] == "+":
             return
 
-        # Add coordinate to solution stack
+        # Add coordinate to solution stack and add one move
         self.path.append(point)
         self.moves += 1
 
         if self.blocks[y_pos][x_pos] == "E":
             self.finished = True
             self.path.pop()
+            self.final_moves = self.moves
             return
         else:
             # Check neighbor blocks
@@ -203,14 +205,16 @@ class Maze:
             self.solve_maze((x_pos, y_pos - 1))
             self.solve_maze((x_pos, y_pos + 1))
 
-        # Remove coordinate from solution stack
+        # Remove coordinate from solution stack and add one move when
+        # returning is required
+        self.moves += 1
         self.path.pop()
         self.refresh_maze_screen()
 
 
 def show_start_screen(screen):
     screen.fill(WHITE)
-    screen.blit(FONT_LARGE.render("INTERESTED IN SOLVING SOME MAZES?", 1, BLACK),
+    screen.blit(FONT_LARGE.render("CHOOSE MAZE FOR PENTTI!", 1, BLACK),
                                   (50, 100))
     screen.blit(FONT_MED.render("PRESS NUMBER 1 to open first maze", 1, BLACK),
                                   (50, 400))
