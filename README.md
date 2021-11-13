@@ -23,4 +23,5 @@ Maze should be given in txt file where "#" represents walls, " " represents mova
 
 * Blocks Pentti visited are shown as blue in screen
 * Total moves are shown on top right corner when algorithm is finished. This includes also steps back, so the amount of visited blocks is less than the number of total moves.
-* If search fails, it is announced on top right corner
+* Blue path does not represent the final path that DFS algorithm outputs.
+* If there is no possible route, it is announced on top right corner
