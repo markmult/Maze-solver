@@ -109,9 +109,9 @@ class Maze:
                 # Draw rect one pixel larger than given block size to avoid
                 # cracks in maze wall
                 rect = pygame.Rect(j * self.block_size + self.horizontal_offset,
-                                    i * self.block_size + self.vertical_offset,
-                                    self.block_size+1,
-                                    self.block_size+1)
+                                   i * self.block_size + self.vertical_offset,
+                                   self.block_size+1,
+                                   self.block_size+1)
                 if block_type == "#":
                     pygame.draw.rect(self.screen, BLACK, rect)
                 elif block_type == "E":
@@ -217,9 +217,9 @@ def show_start_screen(screen):
     screen.blit(FONT_LARGE.render("CHOOSE MAZE FOR PENTTI!", 1, BLACK),
                                   (50, 100))
     screen.blit(FONT_MED.render("PRESS NUMBER 1 to open first maze", 1, BLACK),
-                                  (50, 400))
+                                (50, 400))
     screen.blit(FONT_MED.render("PRESS NUMBER 2 to open second maze", 1, BLACK),
-                                  (50, 450))
+                                (50, 450))
     pygame.display.update()
 
 
