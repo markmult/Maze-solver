@@ -8,7 +8,7 @@ In this approach Pentti uses Depth First Search algorithm to find the exit. Pent
 
 Clone this repository and install packages mentioned in requirements.txt.
 ```
-git clone https://github.com/markmult/Data-visualizer.git
+git clone https://github.com/markmult/Maze-solver.git
 pip install -r relative\path\requirements.txt
 ```
 After you have installed the required packages, run main.py.
